@@ -12,21 +12,21 @@ const caseStudies = [
     title: "Scaling ROAS from 10x to 18x at a Global Marketplace",
     metrics: ["€500K Monthly Budget", "80% Efficiency Lift"],
     image: <RoasChart />,
-    href: "/case-studies/marketplace-roas",
+    href: "/case-studies",
     color: "from-primary/20 to-transparent",
   },
   {
     title: "35-Language Programmatic SEO Engine",
     metrics: ["100+ Top 3 SERPs", "Fully Automated Content"],
     image: <WorkflowDiagram />,
-    href: "/case-studies/programmatic-seo",
+    href: "/case-studies",
     color: "from-indigo-500/20 to-transparent",
   },
   {
     title: "From 0 to 1,000 Affiliates in 8 Months",
     metrics: ["Partnerize", "Apollo.io Outbound"],
     image: <DashboardPreview />,
-    href: "/case-studies/affiliate-engine",
+    href: "/case-studies",
     color: "from-magenta/20 to-transparent",
   }
 ]

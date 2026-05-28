@@ -7,25 +7,25 @@ const expertiseAreas = [
     title: "AI Automation & Workflows",
     description: "Chaining n8n, Zapier, Make, and LLMs to automate ad copy, reporting, and scale beyond human limits.",
     icon: <Bot className="w-8 h-8 text-indigo-400" />,
-    href: "/expertise/ai-automation",
+    href: "/expertise",
   },
   {
     title: "Performance Marketing",
     description: "Managing €500K+ monthly budgets across Google, Meta, and Bing with programmatic precision.",
     icon: <BarChart3 className="w-8 h-8 text-magenta" />,
-    href: "/expertise/performance-marketing",
+    href: "/expertise",
   },
   {
     title: "Affiliate & Partnerships",
     description: "Building partner engines from zero to 1,000+ affiliates using data-driven outbound and tracking.",
     icon: <Users className="w-8 h-8 text-primary" />,
-    href: "/expertise/affiliate",
+    href: "/expertise",
   },
   {
     title: "SEO & Content",
     description: "Programmatic SEO across 35 languages to dominate SERPs and generate compounding organic growth.",
     icon: <Search className="w-8 h-8 text-signal" />,
-    href: "/expertise/seo-content",
+    href: "/expertise",
   },
 ]
 

@@ -17,8 +17,9 @@ export function Footer() {
           <div className="flex flex-col gap-2">
             <h4 className="font-semibold mb-2">Explore</h4>
             <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground">About</Link>
-            <Link href="/expertise/ai-automation" className="text-sm text-muted-foreground hover:text-foreground">Expertise</Link>
+            <Link href="/expertise" className="text-sm text-muted-foreground hover:text-foreground">Expertise</Link>
             <Link href="/case-studies" className="text-sm text-muted-foreground hover:text-foreground">Case Studies</Link>
+            <Link href="/blog" className="text-sm text-muted-foreground hover:text-foreground">Blog</Link>
           </div>
           <div className="flex flex-col gap-2">
             <h4 className="font-semibold mb-2">Connect</h4>
@@ -32,10 +33,6 @@ export function Footer() {
         <p className="text-xs text-muted-foreground">
           © {new Date().getFullYear()} Himanshu Garg. All rights reserved.
         </p>
-        <div className="flex gap-4">
-          <Link href="/privacy" className="text-xs text-muted-foreground hover:text-foreground">Privacy</Link>
-          <Link href="/terms" className="text-xs text-muted-foreground hover:text-foreground">Terms</Link>
-        </div>
       </div>
     </footer>
   )
