@@ -103,7 +103,8 @@ export default function ContactPage() {
                 <p className="text-muted-foreground">I'll get back to you within 24 hours.</p>
               </div>
             ) : (
-              <form name="contact" data-netlify="true" className="flex flex-col gap-6" onSubmit={handleSubmit}>
+              <form name="contact" method="POST" data-netlify="true" className="flex flex-col gap-6" onSubmit={handleSubmit}>
+                <input type="hidden" name="form-name" value="contact" />
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-2">
                     <Label htmlFor="name">Name</Label>
