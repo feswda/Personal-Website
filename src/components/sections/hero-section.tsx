@@ -95,7 +95,7 @@ export function HeroSection() {
         >
           {/* Placeholder for Himanshu's Headshot */}
           <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-magenta/20 rounded-3xl border border-border/50 shadow-2xl overflow-hidden backdrop-blur-sm flex items-center justify-center">
-            <span className="text-muted-foreground text-sm">[Professional Headshot Here]</span>
+            <img src="/prof_headshot.jpg" alt="Himanshu Garg" className="object-cover w-full h-full" />
           </div>
         </motion.div>
       </div>
