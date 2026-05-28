@@ -11,7 +11,7 @@ export function OperatorSection() {
           <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-magenta/20 rounded-[2rem] blur-2xl -z-10" />
           <div className="w-full h-full bg-background border border-border/50 rounded-[2rem] shadow-xl overflow-hidden flex flex-col">
             <div className="h-2/3 bg-muted flex items-center justify-center relative overflow-hidden">
-              <img src="/prof_headshot.jpg" alt="Himanshu Garg - Professional Headshot" className="object-cover w-full h-full" />
+              <img src="/prof_collage.jpg" alt="Himanshu Garg - Office" className="object-cover w-full h-full object-left" />
             </div>
             <div className="p-6 flex-1 flex flex-col justify-center bg-card">
               <h3 className="font-heading font-bold text-2xl mb-2">Himanshu Garg</h3>
