@@ -19,14 +19,19 @@ export function AnimatedCounter({
   className = "",
 }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null)
-  const inView = useInView(ref, { once: true, margin: "-100px" })
-  const [displayValue, setDisplayValue] = useState("0")
+  const inView = useInView(ref, { once: true, margin: "0px" })
 
   const motionValue = useMotionValue(0)
   const springValue = useSpring(motionValue, {
     damping: 50,
     stiffness: 100,
   })
+
+  // Show final value immediately as text so it's never blank on SSR/mobile
+  const formatted = `${prefix}${Intl.NumberFormat("en-US", {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  }).format(value)}${suffix}`
 
   useEffect(() => {
     if (inView) {
@@ -45,5 +50,5 @@ export function AnimatedCounter({
     })
   }, [springValue, prefix, suffix, decimals])
 
-  return <span ref={ref} className={className} />
+  return <span ref={ref} className={className}>{formatted}</span>
 }

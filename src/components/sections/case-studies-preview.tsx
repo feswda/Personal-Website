@@ -33,12 +33,12 @@ const caseStudies = [
 
 export function CaseStudiesPreview() {
   return (
-    <section className="py-24 bg-background">
-      <div className="container px-4 md:px-8 mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-          <div className="flex flex-col gap-4 max-w-2xl">
+    <section className="py-16 md:py-24 bg-background">
+      <div className="container px-5 mx-auto">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+          <div className="flex flex-col gap-3 max-w-2xl">
             <h2 className="font-heading text-3xl md:text-5xl font-bold tracking-tight">Featured Case Studies</h2>
-            <p className="text-muted-foreground text-lg">
+            <p className="text-muted-foreground text-base md:text-lg">
               Real numbers. Real dashboards. No fluff. How I engineer growth at scale.
             </p>
           </div>
@@ -47,11 +47,11 @@ export function CaseStudiesPreview() {
           </Button>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {caseStudies.map((study) => (
             <Link key={study.title} href={study.href} className="group flex">
               <Card className="flex flex-col overflow-hidden border-border/50 bg-card/50 hover:bg-card transition-colors w-full">
-                <div className={`h-48 bg-gradient-to-br ${study.color} border-b border-border/50 flex items-center justify-center p-0 relative overflow-hidden`}>
+                <div className={`h-44 bg-gradient-to-br ${study.color} border-b border-border/50 flex items-center justify-center p-0 relative overflow-hidden`}>
                   <div className="w-full h-full group-hover:scale-105 transition-transform flex items-center justify-center">
                     {typeof study.image === 'string' ? (
                       <span className="text-muted-foreground font-mono text-sm">{study.image}</span>
@@ -60,17 +60,17 @@ export function CaseStudiesPreview() {
                     )}
                   </div>
                 </div>
-                <CardHeader>
-                  <CardTitle className="font-heading text-xl leading-tight group-hover:text-primary transition-colors">
+                <CardHeader className="pb-2">
+                  <CardTitle className="font-heading text-lg leading-tight group-hover:text-primary transition-colors">
                     {study.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex-1 flex gap-2 flex-wrap">
+                <CardContent className="flex-1 flex gap-2 flex-wrap pb-2">
                   {study.metrics.map(m => (
-                    <Badge key={m} variant="secondary" className="bg-secondary/50">{m}</Badge>
+                    <Badge key={m} variant="secondary" className="bg-secondary/50 text-xs">{m}</Badge>
                   ))}
                 </CardContent>
-                <CardFooter className="pt-4 pb-6">
+                <CardFooter className="pt-2 pb-5">
                   <span className="text-sm font-medium text-primary flex items-center group-hover:translate-x-1 transition-transform">
                     Read Study <ArrowRight className="w-4 h-4 ml-1" />
                   </span>

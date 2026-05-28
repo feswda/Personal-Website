@@ -31,27 +31,27 @@ const expertiseAreas = [
 
 export function ExpertiseGrid() {
   return (
-    <section className="py-24 bg-background relative border-t border-border/40">
-      <div className="container px-4 md:px-8 mx-auto">
-        <div className="flex flex-col gap-4 max-w-2xl mb-16">
+    <section className="py-16 md:py-24 bg-background relative border-t border-border/40">
+      <div className="container px-5 mx-auto">
+        <div className="flex flex-col gap-3 max-w-2xl mb-10">
           <h2 className="font-heading text-3xl md:text-5xl font-bold tracking-tight">What I Do</h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-base md:text-lg">
             Fusing computer science with performance marketing to build growth engines that scale.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {expertiseAreas.map((area) => (
             <Link key={area.title} href={area.href} className="group h-full">
               <Card className="h-full bg-card/50 backdrop-blur border-border/50 transition-all hover:bg-card hover:border-primary/50 hover:shadow-[0_0_20px_rgba(99,102,241,0.15)] flex flex-col">
-                <CardHeader>
-                  <div className="mb-4 p-3 rounded-lg bg-background w-fit border border-border/50 group-hover:scale-110 transition-transform">
+                <CardHeader className="pb-2">
+                  <div className="mb-3 p-3 rounded-lg bg-background w-fit border border-border/50 group-hover:scale-110 transition-transform">
                     {area.icon}
                   </div>
-                  <CardTitle className="font-heading text-xl">{area.title}</CardTitle>
+                  <CardTitle className="font-heading text-lg">{area.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-1">
-                  <CardDescription className="text-base">
+                  <CardDescription className="text-sm leading-relaxed">
                     {area.description}
                   </CardDescription>
                 </CardContent>
