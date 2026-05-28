@@ -1,10 +1,11 @@
 "use client"
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { Mail, Clock } from "lucide-react"
+import { Mail, Clock, CheckCircle2 } from "lucide-react"
 
 const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -15,6 +16,38 @@ const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
 )
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    intent: "",
+    budget: "",
+    message: ""
+  })
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    const newLead = {
+      id: Date.now().toString(),
+      ...formData,
+      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+      status: "New"
+    }
+
+    const existingLeads = localStorage.getItem("admin_leads")
+    const leadsArray = existingLeads ? JSON.parse(existingLeads) : []
+    leadsArray.unshift(newLead)
+    localStorage.setItem("admin_leads", JSON.stringify(leadsArray))
+
+    setSubmitted(true)
+    setFormData({ name: "", email: "", intent: "", budget: "", message: "" })
+    
+    setTimeout(() => {
+      setSubmitted(false)
+    }, 5000)
+  }
+
   return (
     <div className="flex flex-col w-full min-h-screen">
       <section className="pt-32 pb-16 bg-background relative overflow-hidden">
@@ -55,53 +88,83 @@ export default function ContactPage() {
           </div>
 
           <div className="bg-card rounded-2xl border border-border/50 p-8 shadow-xl">
-            <form className="flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="flex flex-col gap-2">
-                  <Label htmlFor="name">Name</Label>
-                  <Input id="name" placeholder="John Doe" required />
+            {submitted ? (
+              <div className="flex flex-col items-center justify-center h-full text-center space-y-4 py-12">
+                <CheckCircle2 className="w-16 h-16 text-primary" />
+                <h3 className="text-2xl font-bold font-heading">Message Sent!</h3>
+                <p className="text-muted-foreground">I'll get back to you within 24 hours.</p>
+              </div>
+            ) : (
+              <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="flex flex-col gap-2">
+                    <Label htmlFor="name">Name</Label>
+                    <Input 
+                      id="name" 
+                      placeholder="John Doe" 
+                      value={formData.name}
+                      onChange={e => setFormData({...formData, name: e.target.value})}
+                      required 
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <Label htmlFor="email">Work Email</Label>
+                    <Input 
+                      id="email" 
+                      type="email" 
+                      placeholder="john@company.com" 
+                      value={formData.email}
+                      onChange={e => setFormData({...formData, email: e.target.value})}
+                      required 
+                    />
+                  </div>
                 </div>
+                
                 <div className="flex flex-col gap-2">
-                  <Label htmlFor="email">Work Email</Label>
-                  <Input id="email" type="email" placeholder="john@company.com" required />
+                  <Label htmlFor="intent">What can I help you with?</Label>
+                  <select 
+                    id="intent" 
+                    className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                    value={formData.intent}
+                    onChange={e => setFormData({...formData, intent: e.target.value})}
+                    required
+                  >
+                    <option value="" disabled>Select an option...</option>
+                    <option value="hire">Hire me full-time / fractional</option>
+                    <option value="consulting">Consulting project</option>
+                    <option value="speaking">Speaking invitation</option>
+                    <option value="partnership">Partnership / collaboration</option>
+                    <option value="other">Other</option>
+                  </select>
                 </div>
-              </div>
-              
-              <div className="flex flex-col gap-2">
-                <Label htmlFor="intent">What can I help you with?</Label>
-                <select 
-                  id="intent" 
-                  className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                  required
-                >
-                  <option value="" disabled selected>Select an option...</option>
-                  <option value="hire">Hire me full-time / fractional</option>
-                  <option value="consulting">Consulting project</option>
-                  <option value="speaking">Speaking invitation</option>
-                  <option value="partnership">Partnership / collaboration</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
 
-              <div className="flex flex-col gap-2">
-                <Label htmlFor="budget">Monthly Budget / Project Size (Optional)</Label>
-                <Input id="budget" placeholder="e.g., €50K+/mo" />
-              </div>
+                <div className="flex flex-col gap-2">
+                  <Label htmlFor="budget">Monthly Budget / Project Size (Optional)</Label>
+                  <Input 
+                    id="budget" 
+                    placeholder="e.g., €50K+/mo" 
+                    value={formData.budget}
+                    onChange={e => setFormData({...formData, budget: e.target.value})}
+                  />
+                </div>
 
-              <div className="flex flex-col gap-2">
-                <Label htmlFor="message">Message</Label>
-                <Textarea 
-                  id="message" 
-                  placeholder="Tell me about your current growth bottlenecks..." 
-                  className="min-h-[120px]"
-                  required
-                />
-              </div>
+                <div className="flex flex-col gap-2">
+                  <Label htmlFor="message">Message</Label>
+                  <Textarea 
+                    id="message" 
+                    placeholder="Tell me about your current growth bottlenecks..." 
+                    className="min-h-[120px]"
+                    value={formData.message}
+                    onChange={e => setFormData({...formData, message: e.target.value})}
+                    required
+                  />
+                </div>
 
-              <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
-                Send Message
-              </Button>
-            </form>
+                <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
+                  Send Message
+                </Button>
+              </form>
+            )}
           </div>
         </div>
       </section>
