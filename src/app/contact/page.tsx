@@ -25,27 +25,35 @@ export default function ContactPage() {
   })
   const [submitted, setSubmitted] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    const newLead = {
-      id: Date.now().toString(),
-      ...formData,
-      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-      status: "New"
+    try {
+      const formPayload = new URLSearchParams()
+      formPayload.append("form-name", "contact")
+      Object.entries(formData).forEach(([key, value]) => {
+        formPayload.append(key, value as string)
+      })
+
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formPayload.toString(),
+      })
+
+      if (response.ok) {
+        setSubmitted(true)
+        setFormData({ name: "", email: "", intent: "", budget: "", message: "" })
+        
+        setTimeout(() => {
+          setSubmitted(false)
+        }, 5000)
+      } else {
+        console.error("Form submission failed")
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error)
     }
-
-    const existingLeads = localStorage.getItem("admin_leads")
-    const leadsArray = existingLeads ? JSON.parse(existingLeads) : []
-    leadsArray.unshift(newLead)
-    localStorage.setItem("admin_leads", JSON.stringify(leadsArray))
-
-    setSubmitted(true)
-    setFormData({ name: "", email: "", intent: "", budget: "", message: "" })
-    
-    setTimeout(() => {
-      setSubmitted(false)
-    }, 5000)
   }
 
   return (
@@ -95,7 +103,7 @@ export default function ContactPage() {
                 <p className="text-muted-foreground">I'll get back to you within 24 hours.</p>
               </div>
             ) : (
-              <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
+              <form name="contact" data-netlify="true" className="flex flex-col gap-6" onSubmit={handleSubmit}>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-2">
                     <Label htmlFor="name">Name</Label>

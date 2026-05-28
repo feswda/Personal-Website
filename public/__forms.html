@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Netlify Forms Definitions</title>
+</head>
+<body>
+  <!-- This file exists solely for Netlify's build-time parser to detect forms in Next.js App Router. -->
+  <form name="contact" data-netlify="true" hidden>
+    <input type="hidden" name="form-name" value="contact" />
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <select name="intent">
+      <option value="hire">Hire me full-time / fractional</option>
+      <option value="consulting">Consulting project</option>
+      <option value="speaking">Speaking invitation</option>
+      <option value="partnership">Partnership / collaboration</option>
+      <option value="other">Other</option>
+    </select>
+    <input type="text" name="budget" />
+    <textarea name="message"></textarea>
+  </form>
+</body>
+</html>
