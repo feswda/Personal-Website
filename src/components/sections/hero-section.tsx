@@ -15,7 +15,7 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
       </div>
 
-      <div className="container px-4 md:px-8 mx-auto relative z-10 flex flex-col lg:flex-row items-center gap-12">
+      <div className="container px-4 md:px-8 mx-auto relative z-10 flex flex-col lg:flex-row items-center gap-12 pt-24 pb-12 lg:pt-0 lg:pb-0">
         <div className="flex-1 flex flex-col items-start gap-8">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -42,32 +42,33 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex flex-col gap-6"
+            className="flex flex-col gap-6 w-full"
           >
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 border-y border-border/50 py-6">
-              <div className="flex flex-col">
-                <span className="text-3xl font-bold font-mono text-foreground">
+            {/* Stats grid — 2 columns on mobile, 4 on desktop */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-5 border-y border-border/50 py-6">
+              <div className="flex flex-col gap-0.5">
+                <span className="text-xs text-muted-foreground leading-tight">Monthly Ad Budgets</span>
+                <span className="text-2xl md:text-3xl font-bold font-mono text-foreground">
                   <AnimatedCounter value={500} prefix="€" suffix="K+" />
                 </span>
-                <span className="text-sm text-muted-foreground">Monthly Ad Budgets</span>
               </div>
-              <div className="flex flex-col">
-                <span className="text-3xl font-bold font-mono text-foreground">
+              <div className="flex flex-col gap-0.5">
+                <span className="text-xs text-muted-foreground leading-tight">Revenue Generated</span>
+                <span className="text-2xl md:text-3xl font-bold font-mono text-foreground">
                   <AnimatedCounter value={100} prefix="€" suffix="M+" />
                 </span>
-                <span className="text-sm text-muted-foreground">Revenue Generated</span>
               </div>
-              <div className="flex flex-col">
-                <span className="text-3xl font-bold font-mono text-signal">
+              <div className="flex flex-col gap-0.5">
+                <span className="text-xs text-muted-foreground leading-tight">ROAS Scaled</span>
+                <span className="text-2xl md:text-3xl font-bold font-mono text-signal">
                   <AnimatedCounter value={18} suffix="x" />
                 </span>
-                <span className="text-sm text-muted-foreground">ROAS Scaled</span>
               </div>
-              <div className="flex flex-col">
-                <span className="text-3xl font-bold font-mono text-foreground">
+              <div className="flex flex-col gap-0.5">
+                <span className="text-xs text-muted-foreground leading-tight">Languages Automated</span>
+                <span className="text-2xl md:text-3xl font-bold font-mono text-foreground">
                   <AnimatedCounter value={35} />
                 </span>
-                <span className="text-sm text-muted-foreground">Languages Automated</span>
               </div>
             </div>
           </motion.div>
@@ -87,13 +88,13 @@ export function HeroSection() {
           </motion.div>
         </div>
 
+        {/* Hero image — hidden on small screens to keep stats readable */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="flex-1 w-full max-w-md lg:max-w-none relative aspect-square"
+          className="hidden lg:flex flex-1 w-full max-w-md lg:max-w-none relative aspect-square"
         >
-          {/* Placeholder for Himanshu's Headshot */}
           <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-magenta/20 rounded-3xl border border-border/50 shadow-2xl overflow-hidden backdrop-blur-sm flex items-center justify-center">
             <img src="/prof_headshot.jpg" alt="Himanshu Garg" className="object-cover w-full h-full" />
           </div>
@@ -102,3 +103,4 @@ export function HeroSection() {
     </section>
   )
 }
+

@@ -32,15 +32,15 @@ const caseStudies = [
     visual: <WorkflowDiagram />
   },
   {
-    title: "The Zero-Touch Affiliate System",
+    title: "From 0 to 1,000+ Affiliates in 8 Months",
     clientType: "B2B SaaS Provider",
     metrics: [
+      { label: "Active Affiliates", value: "0 → 1,000+" },
       { label: "Hours Saved", value: "40/week" },
-      { label: "Payout Errors", value: "0%" },
-      { label: "Partner Growth", value: "+150%" }
+      { label: "Payout Errors", value: "0%" }
     ],
-    challenge: "The affiliate marketing team was drowning in manual spreadsheets, partner onboarding delays, and payout miscalculations.",
-    solution: "Deployed an n8n webhook architecture connecting the proprietary CRM directly to Stripe and a custom partner portal, creating a zero-touch onboarding and payout ecosystem.",
+    challenge: "The company had zero affiliate presence. The team was manually onboarding partners via email threads, managing commissions in spreadsheets, and losing hours weekly to payout reconciliation errors.",
+    solution: "Built a fully zero-touch affiliate engine using n8n, Partnerize, and Apollo.io. New partners trigger an automated n8n workflow: Stripe Connect account created, unique tracking links generated, welcome email sent, and CRM updated — all within 90 seconds of signup. Scaled from 0 to 1,000+ active affiliates in 8 months.",
     visual: <DashboardPreview />
   }
 ]
